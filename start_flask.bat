@@ -11,17 +11,21 @@ if errorlevel 1 (
 )
 
 REM Create virtual environment if it doesn't exist
+set VENV_CREATED=false
 if not exist ".venv" (
     echo Creating virtual environment...
     python -m venv .venv
+    set VENV_CREATED=true
 )
 
 REM Activate virtual environment
 call .venv\Scripts\activate
 
-REM Install dependencies
-echo Installing dependencies...
-pip install -r requirements.txt
+REM Install dependencies only if virtual environment was just created
+if "%VENV_CREATED%"=="true" (
+    echo Installing dependencies...
+    pip install -r requirements.txt
+)
 
 REM Start Flask server
 echo Starting Flask server...
