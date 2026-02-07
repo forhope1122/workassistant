@@ -10,7 +10,7 @@ CORS(app)
 memory_store = {}
 
 @app.route('/send', methods=['POST'])
-def send_date():
+def send_data():
     # 获取JSON数据
     json_data = request.get_json()
     print("Received JSON data:", json_data)
