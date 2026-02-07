@@ -1,4 +1,5 @@
 @echo off
+setlocal enabledelayedexpansion
 REM Start Flask server script for Windows
 
 REM Check if Python is installed
@@ -22,7 +23,7 @@ REM Activate virtual environment
 call .venv\Scripts\activate
 
 REM Install dependencies only if virtual environment was just created
-if "%VENV_CREATED%"=="true" (
+if "!VENV_CREATED!"=="true" (
     echo Installing dependencies...
     pip install -r requirements.txt
 )
